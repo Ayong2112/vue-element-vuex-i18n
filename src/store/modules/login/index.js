@@ -1,11 +1,23 @@
+import {promised} from "q";
+
 const login = {
   states: {
     name: '',
     password: '',
     user: {}
   },
-  getter: {},
+  getters: {
+    getUser(state) {
+      return state.user
+    }
+  },
   actions: {
+    loginTest: ({commit, state, dispatch}, config = {}) => {
+      return new Promise((resolve, reject) => {
+        commit('setLoginTest', (state, config))
+        resolve('1111')
+      })
+    },
     login: ({commit, state, dispatch}, config = {}) => {
       debugger
       //保存用户信息
@@ -33,8 +45,8 @@ const login = {
     },
   },
   mutations: {
-    setUser(state, action) {
-      state.user = action.user
+    setLoginTest(state, action) {
+      state.user = action
     }
   }
 }
